@@ -10,6 +10,6 @@ services:
     volumes:
       - ./conf/config.default.ini:/app/conf/config.default.ini
     ports:
-      - "8080:8080"
+      - "8010:8010"
     depends_on:
       - etcd

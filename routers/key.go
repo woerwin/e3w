@@ -1,6 +1,7 @@
 package routers
 
 import (
+	"log"
 	"github.com/gin-gonic/gin"
 	"github.com/soyking/e3ch"
 )
@@ -31,6 +32,7 @@ func getKeyHandler(c *gin.Context, client *client.EtcdHRCHYClient) (interface{},
 
 		realNodes := []*Node{}
 		for _, node := range nodes {
+			log.Println("parse:", parseNode(node))
 			realNodes = append(realNodes, parseNode(node))
 		}
 		return realNodes, nil
