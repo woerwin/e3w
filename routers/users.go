@@ -5,6 +5,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const (
+	DEFAULT_PASSWORD = "default_password"
+)
+
 func getUsersHandler(c *gin.Context, client *clientv3.Client) (interface{}, error) {
 	resp, err := client.UserList(newEtcdCtx())
 	if err != nil {
@@ -30,7 +34,8 @@ func createUserHandler(c *gin.Context, client *clientv3.Client) (interface{}, er
 		return nil, errUserName
 	}
 
-	_, err = client.UserAdd(newEtcdCtx(), r.Name, r.Password)
+	var password = DEFAULT_PASSWORD
+	_, err = client.UserAdd(newEtcdCtx(), r.Name, password)
 	return nil, err
 }
 

@@ -1,8 +1,9 @@
 package routers
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type response struct {
@@ -14,6 +15,9 @@ type respHandler func(c *gin.Context) (interface{}, error)
 
 func resp(handler respHandler) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		//if strings.HasPrefix(c.Param("key"), "/") {
+		//	c.Param("key") = strings.TrimPrefix(c.Param("key"), "/")
+		//}
 		result, err := handler(c)
 		r := &response{}
 		if err != nil {

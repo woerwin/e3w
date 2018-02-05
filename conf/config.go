@@ -1,8 +1,31 @@
 package conf
 
 import (
+	"io/ioutil"
+
+	"github.com/pkg/errors"
 	"gopkg.in/ini.v1"
+	"gopkg.in/yaml.v2"
 )
+
+var MainConfig *NewConfig
+
+type EtcdConfig struct {
+	Env       string   `yaml:"env"`
+	Auth      bool     `yaml:"auth"`
+	RootKey   string   `yaml:"root_key"`
+	EndPoints []string `yaml:"addr"`
+	DirValue  string
+	WebAuth   bool `yaml:"web_auth"`
+}
+
+type NewConfig struct {
+	App struct {
+		Port string `yaml:"port"`
+	} `yaml:"app"`
+	Etcd    []*EtcdConfig `yaml:"etcd"`
+	EtcdMap map[string]*EtcdConfig
+}
 
 type Config struct {
 	Port          string
@@ -40,4 +63,25 @@ func Init(filepath string) (*Config, error) {
 	c.CAFile = etcdSec.Key("ca_file").Value()
 
 	return c, nil
+}
+
+func NewInit(path string) (*NewConfig, error) {
+	buf, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	var cfg NewConfig
+	err = yaml.Unmarshal(buf, &cfg)
+	if err != nil {
+		return nil, err
+	}
+	if len(cfg.Etcd) == 0 {
+		return nil, errors.New("missing etcd config")
+	}
+	cfg.EtcdMap = map[string]*EtcdConfig{}
+	for _, ey := range cfg.Etcd {
+		cfg.EtcdMap[ey.Env] = ey
+	}
+	MainConfig = &cfg
+	return MainConfig, nil
 }

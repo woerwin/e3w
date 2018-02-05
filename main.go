@@ -3,12 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
+
+	"github.com/Guazi-inc/e3w/conf"
+	"github.com/Guazi-inc/e3w/e3ch"
+	"github.com/Guazi-inc/e3w/routers"
 	"github.com/coreos/etcd/version"
 	"github.com/gin-gonic/gin"
-	"github.com/soyking/e3w/conf"
-	"github.com/soyking/e3w/e3ch"
-	"github.com/soyking/e3w/routers"
-	"os"
 )
 
 const (
@@ -21,6 +22,8 @@ var configFilepath string
 func init() {
 	flag.StringVar(&configFilepath, "conf", "conf/config.default.ini", "config file path")
 	rev := flag.Bool("rev", false, "print rev")
+	// addr := flag.String("addr", "localhost:2579", "etcd address online")
+	// user := flag.String("user", "", "etcd user")
 	flag.Parse()
 
 	if *rev {
@@ -33,12 +36,12 @@ func init() {
 }
 
 func main() {
-	config, err := conf.Init(configFilepath)
+	config, err := conf.NewInit(configFilepath)
 	if err != nil {
 		panic(err)
 	}
 
-	client, err := e3ch.NewE3chClient(config)
+	client, err := e3ch.InitE3chClient(config)
 	if err != nil {
 		panic(err)
 	}
@@ -46,5 +49,5 @@ func main() {
 	router := gin.Default()
 	router.UseRawPath = true
 	routers.InitRouters(router, config, client)
-	router.Run(":" + config.Port)
+	router.Run(":" + config.App.Port)
 }

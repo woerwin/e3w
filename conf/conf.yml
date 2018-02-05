@@ -1,0 +1,22 @@
+app:
+  port: 8010
+
+etcd:
+  - env: local
+    auth: false
+    addr:
+      - localhost:2379
+    root_key:
+
+  - env: dev
+    auth: true
+    addr:
+      - localhost:2479
+    root_key:
+
+  - env: prod
+    auth: false
+    addr:
+      - localhost:2579
+    root_key:
+#    web_auth: true

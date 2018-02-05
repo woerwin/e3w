@@ -20,12 +20,13 @@ const KeyValue = React.createClass({
     _parseList(list) {
         list = list || []
         // sorted dir and normal kv
-        list.sort((l1, l2) => { return l1.is_dir === l2.is_dir ? l1.key > l2.key : l1.is_dir ? -1 : 1 })
+        // list.sort((l1, l2) => { return l1.is_dir === l2.is_dir ? l1.key < l2.key : l1.is_dir ? -1 : 1 })
         // trim prefix of dir, get the relative path, +1 for /
-        let prefixLen = this.state.dir.length + (this._isRoot() ? 0 : 1)
+        let prefixLen = this.state.dir.length +(this._isRoot() ? 0 : 1)
         list.forEach(l => {
             l.key = l.key.slice(prefixLen)
         })
+        list.sort((l1, l2) => { return l1.key==="env" ? -1 : l2.key==="env" ? 1 : l1.key < l2.key ? -1:1 })
         this.setState({ list: list })
     },
 

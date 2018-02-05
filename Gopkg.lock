@@ -38,7 +38,7 @@
   version = "v0.0.2"
 
 [[projects]]
-  name = "github.com/soyking/e3ch"
+  name = "github.com/Guazi-inc/e3ch"
   packages = ["."]
   revision = "04eed13042a216c0e7953d180a954141e81d5f53"
   version = "v1.0.1"

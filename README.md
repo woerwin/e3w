@@ -3,18 +3,18 @@ e3w
 
 etcd v3 Web UI based on [Golang](https://golang.org/) && [React](https://facebook.github.io/react/), copy from [consul ui](https://github.com/hashicorp/consul/tree/master/ui) :)
 
-supporting hierarchy on etcd v3, based on [e3ch](https://github.com/soyking/e3ch)
+supporting hierarchy on etcd v3, based on [e3ch](https://github.com/Guazi-inc/e3ch)
 
 ## Quick Start
 
 ```
-git clone https://github.com/soyking/e3w.git
+git clone https://github.com/Guazi-inc/e3w.git
 cd e3w
 docker-compose up
 # open http://localhost:8080
 ```
 
-Or use docker image by `docker pull soyking/e3w`, more details in `Dockerfile` and `docker-compose.yml`
+Or use docker image by `docker pull Guazi-inc/e3w`, more details in `Dockerfile` and `docker-compose.yml`
 
 ## Overview
 
@@ -40,7 +40,7 @@ SETTING
 
 ## Usage
 
-1.Fetch the project `go get github.com/soyking/e3w`
+1.Fetch the project `go get github.com/Guazi-inc/e3w`
 
 
 2.frontend
@@ -70,11 +70,11 @@ ETCDCTL_API=3 etcdctl auth enable
 
 4.build image
 
-Install dependencies in 3.b, then run `docker build -t soyking/e3w .`
+Install dependencies in 3.b, then run `docker build -t Guazi-inc/e3w .`
 
 ## Notice
 
-- When you want to add some permissions in directories to a user, the implement of hierarchy in [e3ch](https://github.com/soyking/e3ch) requires you to set a directory's READ permission. For example, if role `roleA` has the permission of directory `dir1/dir2`, then it should have permissions:
+- When you want to add some permissions in directories to a user, the implement of hierarchy in [e3ch](https://github.com/Guazi-inc/e3ch) requires you to set a directory's READ permission. For example, if role `roleA` has the permission of directory `dir1/dir2`, then it should have permissions:
 
 	```
 	KV Read:
@@ -86,4 +86,4 @@ Install dependencies in 3.b, then run `docker build -t soyking/e3w .`
 
 	When `userA` was granted `roleA`, `userA` could open the by `http://e3w-address.com/#/kv/dir1/dir2` to view and edit the key/value
 
-- Access key/value by etcdctl, [issue](https://github.com/soyking/e3w/issues/3). But the best way to access key/value is using [e3ch](https://github.com/soyking/e3ch).
+- Access key/value by etcdctl, [issue](https://github.com/Guazi-inc/e3w/issues/3). But the best way to access key/value is using [e3ch](https://github.com/Guazi-inc/e3ch).

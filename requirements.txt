@@ -1,0 +1,14 @@
+https://github.com/Guazi-inc/e3ch.git#f4e6f6ed38a89d774929142ac111399b1cbd3583,github.com/Guazi-inc/e3ch
+git@git.guazi-corp.com:go-repo/etcd.git#694728c496e22dfa5719c78ff23cc982e15bcb2f,github.com/coreos/etcd
+https://github.com/coreos/go-semver#1817cd4bea52af76542157eeabd74b057d1a199e,github.com/coreos/go-semver
+https://github.com/gin-contrib/sse#22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae,github.com/gin-contrib/sse
+https://github.com/gin-gonic/gin#b8b68314faa067acae5b17c828127b04af51ebe2,github.com/gin-gonic/gin
+https://github.com/golang/protobuf#0a4f71a498b7c4812f64969510bcb4eca251e33a,github.com/golang/protobuf
+https://github.com/mattn/go-isatty#a5cdd64afdee435007ee3e9f6ed4684af949d568,github.com/mattn/go-isatty
+https://github.com/pkg/errors#c605e284fe17294bda444b34710735b29d1a9d90,github.com/pkg/errors
+https://go.googlesource.com/net#d1e1b351919c6738fdeb9893d5c998b161464f0c,golang.org/x/net
+https://go.googlesource.com/text#836efe42bb4aa16aaa17b9c155d8813d336ed720,golang.org/x/text
+https://github.com/google/go-genproto#b0a3dcfcd1a9bd48e63634bd8802960804cf8315,google.golang.org/genproto
+https://github.com/grpc/grpc-go#963eb485d85690cc992e3d02f9dd2a81d5fb0923,google.golang.org/grpc
+https://gopkg.in/ini.v1#5b3e00af70a9484542169a976dcab8d03e601a17,gopkg.in/ini.v1
+https://gopkg.in/yaml.v2#287cf08546ab5e7e37d55a84f7ed3fd1db036de5,gopkg.in/yaml.v2

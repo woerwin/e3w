@@ -9,17 +9,23 @@ import Users from './components/Users'
 import Setting from "./components/Setting"
 import 'antd/dist/antd.min.css'
 import './css/patch.css'
+import Env from './components/Env'
+
 
 ReactDOM.render((
-    <Router history={hashHistory}>
-        <Route path="/" component={App}>
-            <IndexRedirect to="kv/" />
-            <Route path="kv" component={KeyValue} />
-            <Route path="kv/*" component={KeyValue} />
-            <Route path="members" component={Members} />
-            <Route path="roles" component={Roles} />
-            <Route path="users" component={Users} />
-            <Route path="setting" component={Setting} />
-        </Route>
-    </Router>
+    <div>
+        <Env/>
+        <Router history={hashHistory}>
+            <Route path="/" component={App}>
+                <IndexRedirect to="kv/" />
+                <Route path="kv" component={KeyValue} />
+                <Route path="kv/*" component={KeyValue} />
+                <Route path="members" component={Members} />
+                <Route path="roles" component={Roles} />
+                <Route path="users" component={Users} />
+                <Route path="setting" component={Setting} />
+            </Route>
+        </Router>
+    </div>
 ), document.querySelector(".root"))
+

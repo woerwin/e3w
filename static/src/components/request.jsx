@@ -19,12 +19,14 @@ function handler(callback) {
 }
 
 function withAuth(options) {
+    console.log("request", localStorage.env)
     return Object.assign(
         options || {},
         {
             "headers": {
                 "X-Etcd-Username": localStorage.etcdUsername,
-                "X-Etcd-Password": localStorage.etcdPassword
+                "X-Etcd-Password": localStorage.etcdPassword,
+                "X-Etcd-Env":      localStorage.env
             }
         }
     )
@@ -113,9 +115,22 @@ function UsersChangePassword(name, password, callback) {
     xhr.put("user/" + encodeURIComponent(name) + "/password", withAuth({ body: bodyStr }), handler(callback))
 }
 
+function StaffMe(callback) {
+    xhr.get("staff/me", withAuth(), handler(callback))
+}
+
+function LogOut(callback) {
+    xhr.post("staff/logout", withAuth(), handler(callback))
+}
+
+function GetEnvs(callback) {
+    xhr.get("envs", handler(callback))
+}
+
 module.exports = {
     KVList, KVPut, KVDelete, KVGet, KVPost,
     MembersGet,
     RolesAll, RolesPost, RolesGet, RolesDelete, RolesAddPerm, RolesDeletePerm,
-    UsersAll, UsersPost, UsersGet, UsersDelete, UsersGrantRole, UsersRovokeRole, UsersChangePassword
+    UsersAll, UsersPost, UsersGet, UsersDelete, UsersGrantRole, UsersRovokeRole, UsersChangePassword,
+    StaffMe, LogOut, GetEnvs
 }
