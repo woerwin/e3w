@@ -16,6 +16,7 @@ const Env = React.createClass({
     },
 
     _getEnvs(result) {
+        localStorage.envList = result
         console.log(result)
         let ec = localStorage.env
         if (result.indexOf(ec) === -1) {
@@ -45,9 +46,9 @@ const Env = React.createClass({
 
     render() {
         return (
-            <div style={envStyle}>
-                <Radio.Group value={this.state.env} onChange={this._setEnv} layo>
-                {
+            <div style={envStyle} id={"current-env-tag"}>
+                <Radio.Group value={this.state.env} onChange={this._setEnv}>
+                    {
                     this.state.envList.map(function (env) {
                         return <Radio.Button value={env} style={{display:"block"}}>{env}</Radio.Button>
                     })

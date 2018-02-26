@@ -19,14 +19,29 @@ function handler(callback) {
 }
 
 function withAuth(options) {
-    console.log("request", localStorage.env)
+    var env
+    let ll = document.getElementById("current-env-tag").firstChild
+    console.log(ll.childNodes.length)
+    if (ll.childNodes.length > 0)  {
+        env = ll.getElementsByClassName("ant-radio-button-wrapper ant-radio-button-wrapper-checked")[0].children[1].innerText
+    } else {
+        let envList = localStorage.envList.split(",", -1)
+        console.log(envList)
+        env = localStorage.env
+        if (envList.indexOf(env) === -1) {
+            env = envList[0]
+            localStorage.env = env
+        }
+    }
+
+    console.log("request", env)
     return Object.assign(
         options || {},
         {
             "headers": {
                 "X-Etcd-Username": localStorage.etcdUsername,
                 "X-Etcd-Password": localStorage.etcdPassword,
-                "X-Etcd-Env":      localStorage.env
+                "X-Etcd-Env":      env
             }
         }
     )
